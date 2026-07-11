@@ -24,6 +24,20 @@ under `https://joeeeeey.github.io/visual-brief/assets/`. Those URLs can be
 embedded in a V2EX post or another public draft after the image and caption
 have been reviewed.
 
+The employee device-check case study lives at
+`https://joeeeeey.github.io/visual-brief/case-study/`. Its `05`, `06`, and `07`
+assets are browser-rendered synthetic screens and contain no real company,
+account, employee, installer, or device data.
+
+Regenerate the reviewed case-study images locally with:
+
+```bash
+python3 -m pip install -r requirements-dev.txt
+npm install
+npx playwright install chromium
+npm run render-case-study
+```
+
 Do not use GitHub Pages as a shortcut for screenshots that contain credentials,
 customer data, private tenant state, or access-controlled material.
 

@@ -1,17 +1,21 @@
 # Visual Brief
 
-> Turn deep context into a brief someone can inspect.
+> Let AI show the important button, sentence, or success state instead of only describing it.
 
-Visual Brief is an evidence-first skill for AI agents. It helps turn source-backed
-research, decisive screenshots, annotated UI states, diagrams, and reader-aware
-writing into a reviewable package.
+Visual Brief is a skill for AI agents such as Codex, Claude Code, and Cursor.
+After an agent researches a question or walks through a web flow, it can capture
+only the part another person needs to see, place each image next to the matching
+explanation, and prepare a Slack reply, operating guide, or public tutorial.
 
-It is built around one simple idea:
+For example, imagine an employee installing a company-required helper on a Mac.
+The useful result is not a long paragraph saying "download it, enable permission,
+then wait." It is a short guide showing the exact download button, the setting to
+enable, and the green state that proves the setup is complete.
 
-> A screenshot reduces the effort to inspect a claim. A canonical link preserves
-> the ability to verify or challenge it. Neither replaces the other.
+![A synthetic employee guide generated as a Visual Brief](https://joeeeeey.github.io/visual-brief/assets/06-employee-guide-preview.webp)
 
-![A Visual Brief makes a context gap visible](https://joeeeeey.github.io/visual-brief/assets/01-context-gap.webp)
+[Open the full synthetic case study](https://joeeeeey.github.io/visual-brief/case-study/).
+It contains no real company, account, employee, or device data.
 
 ## Install
 
@@ -35,11 +39,11 @@ you intentionally want a user-level installation.
 
 ## Why It Exists
 
-AI collaborators rarely start with the same context. One person has spent an
-hour reading documents and product screens; another gets a conclusion and a
-link dump. The bottleneck is not always research. It is turning research into
-something a reader can understand and check without replaying the whole
-investigation.
+AI often produces a correct answer that is still hard to follow. The reader has
+to open several links, find the sentence being referenced, and guess which
+button or final state matters. Visual Brief does that last mile of communication:
+it chooses the smallest useful visual, keeps the original source link nearby,
+and writes for the person seeing the workflow for the first time.
 
 Visual Brief packages the smallest useful evidence, the source behind it, and a
 narrative arranged for the next reader action.

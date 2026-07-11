@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "python3 -m unittest discover -s tests -p 'test_*.py'",
-    "generate-examples": "python3 tests/generate_example_assets.py"
+    "generate-examples": "python3 tests/generate_example_assets.py",
+    "render-case-study": "node scripts/render_case_study.mjs"
   },
   "devDependencies": {
     "playwright": "1.61.1"

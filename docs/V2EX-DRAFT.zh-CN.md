@@ -1,66 +1,83 @@
 # V2EX Draft: Visual Brief
 
-> Status: draft only. No image has been uploaded and no post has been published.
+> Status: draft only. No post has been published.
 
 ## Recommended title
 
-我做了一个给 AI 用的 Skill：让“我查过了”变成别人能快速核验的图文说明
+我做了个小 Skill：让 AI 不只告诉你“点哪里”，还会把每一步截图贴好
 
 ## Post body
 
-我最近越来越强烈地感觉到，AI 协作里很多卡住的地方，根本不是“信息不够”。
+前阵子我碰到一个很小、但特别磨人的场景。
 
-更常见的是：我已经看过一堆资料，脑子里有了结论；但另一个人只收到一句“我建议这么做”。他要么相信我，要么重新从十几个链接里翻一遍。两边的上下文根本不对称。
+假设公司要求每个同事在 Mac 上装一个设备检查小助手。流程听起来不复杂：登录员工页面、下载安装包、装好以后去系统设置开权限、等它同步，最后确认页面显示成功。
 
-所以我做了一个叫 **Visual Brief** 的 Skill。
+但真的把说明发给同事时，问题就来了：
 
-它不是让 AI 多截几张图，而是让 AI 把真正决定判断的那一小段截图或界面状态、对应的可追溯来源链接，以及一段面向读者写的短解释，按读者能看懂和核验的顺序放进同一个包里。
+“下载哪个版本？”
 
-![图 1：协作真正的断层通常是上下文不对称，而不是资料数量](https://joeeeeey.github.io/visual-brief/assets/01-context-gap.webp)
+“系统设置到底要点哪里？”
 
-我很在意两件看起来有点拧巴、但其实必须同时成立的事：
+“权限已经开了，为什么页面还没变绿？”
 
-- 截图能让人很快看到“你到底在说哪一句、哪个按钮、哪个状态”，降低检查成本；
-- 但截图不是来源。读者仍然应该能点开 canonical link，去核对、追问，甚至反驳这个结论。
+“我现在这样算完成了吗？”
 
-生成图和关系图也很好用，不过它们只能帮助解释，不能伪装成事实证据。
+我以前的做法，通常是丢一个帮助链接，再补一大段文字。就算让 AI 来写，很多时候也只是把这段文字写得更完整。
 
-![图 2：一句主张、决定性视觉素材和 canonical link 各自承担不同职责](https://joeeeeey.github.io/visual-brief/assets/02-claim-visual-source.webp)
+内容可能没错，但第一次操作的人还是得自己打开网页、找按钮、对照设置，然后猜我说的“完成”到底长什么样。
 
-现在这个 Skill 先支持三种我自己最常遇到的场景：
+所以我做了一个叫 **Visual Brief** 的小 Skill。
 
-1. **evidence-reply**：比如有人问“为什么不采用这个方案？”。先给结论，再放最关键的证据图和来源，而不是甩一堆链接。
-2. **visual-procedure**：比如员工要登录、下载、安装、授权、等待同步。每一步后面紧跟图片、预期会看到什么，以及最后怎样算成功。
-3. **public-explainer**：把研究和经验整理成博客、V2EX、X/Twitter 这类图文说明。真实截图、图解和生成图会明确区分，事实主张保留来源和边界。
+这里说的 Skill 不是一个新的 App，更像是装进 Codex、Claude Code 这类 AI 助手里的一套工作方法。
 
-![图 3：三种模式，分别服务于决策回复、操作指南和公开讲解](https://joeeeeey.github.io/visual-brief/assets/03-three-modes.webp)
+它解决的其实就是一个很具体的问题：AI 根据你指定或审核过的官方页面整理完资料以后，不要只把答案写成文字。它还会顺手打开相关页面，只截真正要看的按钮、开关和成功状态，再排成一份可以直接发给别人的图文说明。
 
-还有一个我觉得挺重要但不那么“炫”的设计：默认只生成本地草稿、图片和预览，不会自己上传、发 Slack、发帖或者创建公开仓库。浏览器登录状态、cookie、token 之类的东西也明确放在仓库外，当作凭据处理。
+下面这个例子是我专门做的完全合成演示，不是真实公司的后台，也没有任何员工、账号或设备信息。
 
-这个仓库把 Skill 的安装内容和展示内容分开：
+第一步，AI 走到员工下载页面。它不会扔给读者一张塞满无关内容的超长截图，而是保留足够的页面背景，再把真正要点的 `Download for macOS` 按钮框出来。
+
+![合成演示：AI 只保留员工真正需要点击的下载区域](https://joeeeeey.github.io/visual-brief/assets/05-employee-portal-download.webp)
+
+但最后生成出来的也不是一个乱七八糟的截图文件夹。
+
+它会把整套流程排成一页很简单的指南：一句话说清楚要做什么，图片紧跟在这句话下面；做完一步，再看下一步。
+
+![合成演示：AI 生成的三步员工图文指南](https://joeeeeey.github.io/visual-brief/assets/06-employee-guide-preview.webp)
+
+我觉得这里最容易被忽略的是最后一步。
+
+很多教程写到“点了安装”或者“打开了权限”就结束了，但真正第一次操作的人需要知道：做到什么样才算完成？
+
+所以指南最后会明确告诉他，回到员工页面，等到绿色的 `Device check complete` 出现，才是真的好了。
+
+![合成演示：最后可见的成功状态](https://joeeeeey.github.io/visual-brief/assets/07-device-check-complete.webp)
+
+真实使用时，每一步下面还会保留原始帮助页面的链接。想快速完成的人直接看图；想确认细节的人，可以点回原网页自己核对。
+
+图里的 `Full Disk Access` 只是合成示例，不是让 AI 自己决定该给哪个软件权限。真实流程必须来自组织已经审核的软件和官方说明。
+
+同样的做法也可以用在 Slack 里。比如有人问“为什么这个方案现在不能用”，AI 不只发一段结论，还会把官方网站上最关键的那句话截出来、标出来，并把原网页链接放在旁边。
+
+它不会替员工偷偷安装软件，也不会自己把内容发出去。它自动做的是查资料、挑重点、截图、裁剪和排版，最后先生成一份草稿给人检查。
+
+真实浏览器的登录状态、cookie 和个人信息也不会放进仓库。截图在分享前要先检查和脱敏，最终发送或发布仍然需要人确认。
+
+项目已经开源：<https://github.com/joeeeeey/visual-brief>
+
+完整合成案例：<https://joeeeeey.github.io/visual-brief/case-study/>
+
+如果你的 AI 工具支持 Skills，可以先看看仓库里有哪些 Skill：
 
 ```bash
-npx skills add joeeeeey/visual-brief --skill visual-brief --agent '*'
+npx skills add joeeeeey/visual-brief --list
 ```
 
-安装时拿到的是轻量的 `visual-brief` Skill，不需要把 README 的展示图、网站素材或评估工作区都拉到 agent 环境里。README 里的图文展示放在 GitHub Pages 上。
+README 里放了 Codex、Claude Code 和其他 Agent 的具体安装命令。
 
-![图 4：轻量安装 payload 和公开展示站分层](https://joeeeeey.github.io/visual-brief/assets/04-lightweight-install.webp)
-
-仓库：<https://github.com/joeeeeey/visual-brief>
-
-展示页：<https://joeeeeey.github.io/visual-brief/>
-
-里面目前放的是合成、脱敏的示例，不含真实账号、客户数据或内部截图。
-
-我比较想听听大家对这几个问题的看法：
-
-- 截图和来源链接，怎样组合才既快又不失可审计性？
-- 这种 `source -> claim -> asset -> output` 的 artifact contract 有没有更好的做法？
-- 对操作型教程来说，“最后可见的成功状态”是不是比“最后点了哪个按钮”更重要？
+我现在比较好奇的是，大家平时有没有遇到这种情况：AI 的答案其实是对的，但你把它发给同事以后，对方还是不知道下一步该点哪里？
 
 ## Publish gate
 
-Before using this draft, verify the account, final title, complete text, four
+Before using this draft, verify the account, final title, complete text, three
 images, and public URLs. Obtain explicit approval immediately before the final
 publish action.

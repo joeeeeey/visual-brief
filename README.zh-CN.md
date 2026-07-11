@@ -1,10 +1,17 @@
 # Visual Brief
 
-> 把你已经理解的上下文，变成别人可以快速检查的说明。
+> 让 AI 不只告诉别人“点哪里”，还把真正要看的按钮和成功状态截图贴好。
 
-Visual Brief 是给 Codex、Claude Code、Cursor 等 AI agent 使用的证据驱动视觉沟通 skill。它把来源、关键截图或图解、以及面向读者的解释组织成一个可审阅的包。
+Visual Brief 是给 Codex、Claude Code、Cursor 等 AI agent 使用的小 Skill。
+AI 查完资料或走完一个网页流程以后，它会截下别人真正需要看的那一小块画面，把图片放在对应说明的下面，再生成可以发到 Slack、放进操作指南或公开教程的草稿。
 
-截图降低检查成本；canonical link 保留核对和反驳的路径。两者缺一不可。
+比如公司要求同事在 Mac 上安装一个设备检查助手。只发一大段文字时，对方常常还会问：“下载哪个？”“权限开对了吗？”“现在算完成了吗？”Visual Brief 会把下载按钮、要打开的权限和最终绿色成功状态排成一页图文说明。
+
+![Visual Brief 生成的合成员工指南](https://joeeeeey.github.io/visual-brief/assets/06-employee-guide-preview.webp)
+
+[查看完整合成案例](https://joeeeeey.github.io/visual-brief/case-study/)。案例不包含真实公司、账号、员工或设备数据。
+
+每一步仍然可以保留原始帮助页面链接：想快速完成的人直接看图，想核对细节的人可以点回原文。
 
 ## 安装
 
