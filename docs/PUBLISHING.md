@@ -29,6 +29,10 @@ The employee device-check case study lives at
 assets are browser-rendered synthetic screens and contain no real company,
 account, employee, installer, or device data.
 
+The English README and social-ready guide use
+`https://joeeeeey.github.io/visual-brief/assets/08-employee-guide-preview-en.webp`,
+rendered from `site/case-study/en.html`.
+
 Regenerate the reviewed case-study images locally with:
 
 ```bash

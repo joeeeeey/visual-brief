@@ -112,6 +112,30 @@ button { font: inherit; }
 .case-end { padding: 100px 0 120px; text-align: center; }
 .case-end p { max-width: 680px; margin: 0 auto 28px; color: var(--muted); font-size: 1.15rem; }
 .case-end a { display: inline-block; border: 1px solid var(--ink); border-radius: 6px; padding: 12px 16px; text-decoration: none; font-family: var(--mono); font-size: 0.78rem; font-weight: 900; }
+.english-intro h1 { max-width: 1080px; }
+.social-guide-card { width: min(1440px, calc(100% - 48px)); margin: 0 auto 76px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; padding: 42px 50px 34px; background: var(--white); box-shadow: 0 24px 70px rgba(20, 43, 58, 0.12); }
+.social-card-meta, .social-card-footer { display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-family: var(--mono); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.05em; }
+.social-card-header { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 44px; align-items: end; padding: 38px 0 34px; }
+.social-card-header h2 { max-width: 860px; margin: 0; font-family: var(--display); font-size: 4rem; line-height: 1; letter-spacing: 0; }
+.social-outcome { border-left: 6px solid var(--green); padding: 18px 22px; background: var(--green-soft); }
+.social-outcome span, .social-outcome strong { display: block; }
+.social-outcome span { margin-bottom: 5px; color: var(--green); font-family: var(--mono); font-size: 0.86rem; font-weight: 900; }
+.social-outcome strong { font-size: 1.35rem; }
+.social-steps { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.social-step { min-width: 0; padding: 32px 30px 34px; border-right: 1px solid var(--line); }
+.social-step:first-child { padding-left: 0; }
+.social-step:last-child { padding-right: 0; border-right: 0; }
+.social-step-number { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; color: var(--white); background: var(--blue); font-family: var(--mono); font-weight: 900; }
+.social-step h3 { margin: 22px 0 5px; font-size: 2rem; }
+.social-step p { margin: 0 0 24px; color: var(--muted); font-size: 1.35rem; }
+.social-control { display: flex; align-items: center; justify-content: center; min-height: 92px; border: 1px solid var(--line); padding: 20px; font-size: 1.22rem; font-weight: 800; background: var(--paper); }
+.download-control { color: var(--white); background: var(--blue); border-color: var(--blue); }
+.permission-control { justify-content: space-between; gap: 18px; }
+.success-control { justify-content: flex-start; gap: 16px; color: var(--green); background: var(--green-soft); border-color: #a9d6c1; }
+.social-card-footer { padding-top: 26px; }
+.english-guide .guide-header h2 { max-width: 720px; font-size: 3.15rem; }
+.english-guide .step-copy p { max-width: 540px; }
+.english-end { padding-top: 72px; }
 
 @media (max-width: 820px) {
   .case-nav, .case-intro, .story-copy, .case-end, .capture-surface, .guide-output { width: min(100% - 28px, 1440px); }
@@ -133,6 +157,15 @@ button { font: inherit; }
   .check-list { grid-template-columns: 1fr; }
   .success-hero { align-items: flex-start; padding: 28px 22px; }
   .success-hero strong { font-size: 2rem; }
+  .english-guide .guide-header h2 { font-size: 2.3rem; }
+  .social-guide-card { width: min(100% - 28px, 1440px); padding: 28px 20px; }
+  .social-card-header, .social-steps { grid-template-columns: 1fr; }
+  .social-card-header { gap: 24px; }
+  .social-card-header h2 { font-size: 2.7rem; }
+  .social-outcome { width: 100%; }
+  .social-step, .social-step:first-child, .social-step:last-child { padding: 26px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .social-step:last-child { border-bottom: 0; }
+  .social-card-footer { align-items: flex-start; flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

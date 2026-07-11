@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A fully synthetic Visual Brief example with no real company, account, employee, or device data.">
+    <title>Visual Brief Synthetic Example</title>
+    <link rel="stylesheet" href="case-study.css">
+  </head>
+  <body>
+    <header class="case-nav">
+      <a href="../" class="case-wordmark">VISUAL BRIEF</a>
+      <a href="index.html">中文案例</a>
+    </header>
+
+    <main>
+      <section class="case-intro english-intro">
+        <p class="synthetic-label">Fully synthetic demo · No real company, account, employee, or device data</p>
+        <h1>Show the next step instead of making the reader hunt for it.</h1>
+        <p class="case-lead">In this example, an employee needs to install a company-approved device-check helper. The useful output is a short guide with the exact action, the nearby visual, and a visible success check.</p>
+      </section>
+
+      <section id="guide-social-card-en" class="social-guide-card" aria-labelledby="social-guide-title">
+        <div class="social-card-meta">
+          <span>VISUAL BRIEF · SYNTHETIC EXAMPLE</span>
+          <span>DRAFT FIRST</span>
+        </div>
+        <header class="social-card-header">
+          <div>
+            <p class="ui-eyebrow">A guide someone can follow without guessing</p>
+            <h2 id="social-guide-title">Three steps. One visible outcome.</h2>
+          </div>
+          <div class="social-outcome">
+            <span>Done when</span>
+            <strong>Device check complete</strong>
+          </div>
+        </header>
+
+        <div class="social-steps">
+          <article class="social-step">
+            <span class="social-step-number">1</span>
+            <h3>Download</h3>
+            <p>Choose the Mac installer.</p>
+            <div class="social-control download-control">Download for macOS</div>
+          </article>
+          <article class="social-step">
+            <span class="social-step-number">2</span>
+            <h3>Permission</h3>
+            <p>Enable the approved setting.</p>
+            <div class="social-control permission-control">
+              <span>Northstar Helper</span>
+              <span class="toggle on"><i></i></span>
+            </div>
+          </article>
+          <article class="social-step success-social-step">
+            <span class="social-step-number">3</span>
+            <h3>Verify</h3>
+            <p>Wait for the portal to turn green.</p>
+            <div class="social-control success-control">
+              <span class="success-dot"></span>
+              <strong>Device check complete</strong>
+            </div>
+          </article>
+        </div>
+
+        <footer class="social-card-footer">
+          <span>Focused screenshot</span>
+          <span>Original source link</span>
+          <span>Human review before sending</span>
+        </footer>
+      </section>
+
+      <section id="guide-preview-en" class="guide-output english-guide" aria-labelledby="guide-title-en">
+        <div class="guide-meta">
+          <span>AI-GENERATED GUIDE · DRAFT</span>
+          <span>SYNTHETIC DEMO</span>
+        </div>
+        <header class="guide-header">
+          <div>
+            <p class="ui-eyebrow">For a teammate doing this for the first time</p>
+            <h2 id="guide-title-en">Complete the device check on macOS</h2>
+          </div>
+          <div class="outcome-box">
+            <span>Done when</span>
+            <strong>The portal shows Device check complete</strong>
+          </div>
+        </header>
+
+        <div class="guide-steps">
+          <article class="guide-step">
+            <div class="step-copy">
+              <span class="step-number">1</span>
+              <div>
+                <h3>Download the Mac installer</h3>
+                <p>On the employee portal, choose <strong>Download for macOS</strong>.</p>
+              </div>
+            </div>
+            <div class="mini-ui mini-download" aria-label="Synthetic download control">
+              <span>Northstar Helper</span>
+              <button type="button">Download for macOS</button>
+            </div>
+            <p class="expected-state">You should receive a `.pkg` installer.</p>
+          </article>
+
+          <article class="guide-step">
+            <div class="step-copy">
+              <span class="step-number">2</span>
+              <div>
+                <h3>Enable the approved permission</h3>
+                <p>Open <strong>System Settings → Privacy &amp; Security</strong> and enable the helper.</p>
+              </div>
+            </div>
+            <div class="settings-ui" aria-label="Synthetic system permission screen">
+              <div class="settings-title">Full Disk Access</div>
+              <div class="settings-row">
+                <span class="app-icon">N</span>
+                <span>Northstar Helper</span>
+                <span class="toggle on"><i></i></span>
+              </div>
+              <div class="reader-cue permission-cue" aria-hidden="true"><span>Confirm the switch is on</span></div>
+            </div>
+            <p class="expected-state">Illustrative screen. A real guide should use the current system UI.</p>
+          </article>
+
+          <article class="guide-step final-step">
+            <div class="step-copy">
+              <span class="step-number">3</span>
+              <div>
+                <h3>Wait for the portal to turn green</h3>
+                <p>Return to the portal and wait for sync. Clicking the button is not the success check.</p>
+              </div>
+            </div>
+            <div class="mini-success" aria-label="Synthetic successful device-check state">
+              <span class="success-dot"></span>
+              <div>
+                <strong>Device check complete</strong>
+                <span>Everything looks good.</span>
+              </div>
+            </div>
+            <p class="expected-state success-copy">This green state is the visible success condition.</p>
+          </article>
+        </div>
+
+        <footer class="guide-footer">
+          <span>Real use: keep the original source link under each step.</span>
+          <span>Draft first · Human review before sending</span>
+        </footer>
+      </section>
+
+      <section class="case-end english-end">
+        <h2>One action, one useful visual, one clear outcome.</h2>
+        <p>That is the small communication problem Visual Brief is designed to solve.</p>
+        <a href="https://github.com/joeeeeey/visual-brief">View the GitHub repository</a>
+      </section>
+    </main>
+  </body>
+</html>

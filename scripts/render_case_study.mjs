@@ -9,6 +9,7 @@ import { chromium } from "playwright";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const input = resolve(root, "site/case-study/index.html");
+const englishInput = resolve(root, "site/case-study/en.html");
 const temporaryOutput = resolve(root, ".tmp-case-study-renders");
 
 await mkdir(temporaryOutput, { recursive: true });
@@ -29,6 +30,10 @@ await page.locator("#guide-preview").screenshot({
 });
 await page.locator("#success-capture").screenshot({
   path: resolve(temporaryOutput, "07-device-check-complete.png"),
+});
+await page.goto(pathToFileURL(englishInput).href, { waitUntil: "networkidle" });
+await page.locator("#guide-social-card-en").screenshot({
+  path: resolve(temporaryOutput, "08-employee-guide-preview-en.png"),
 });
 
 await browser.close();

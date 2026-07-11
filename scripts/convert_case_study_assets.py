@@ -16,6 +16,7 @@ FILENAMES = (
     "05-employee-portal-download",
     "06-employee-guide-preview",
     "07-device-check-complete",
+    "08-employee-guide-preview-en",
 )
 
 
