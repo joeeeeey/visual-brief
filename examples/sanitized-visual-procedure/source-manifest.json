@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "title": "Training example: device check visual procedure",
+  "mode": "visual-procedure",
+  "audience": "Employee-facing guide authors reviewing the format",
+  "status": "draft",
+  "publication": {
+    "approved": false,
+    "approved_at": null,
+    "destination": null
+  },
+  "sources": [
+    {
+      "id": "S-1",
+      "title": "Synthetic device check portal fixture",
+      "url": "https://example.invalid/visual-brief-fixtures/device-check",
+      "kind": "fixture",
+      "captured_at": "2026-07-11T10:30:00+08:00",
+      "access_assumptions": [
+        "offline teaching fixture"
+      ]
+    },
+    {
+      "id": "S-2",
+      "title": "Synthetic installation confirmation fixture",
+      "url": "https://example.invalid/visual-brief-fixtures/install",
+      "kind": "fixture",
+      "captured_at": "2026-07-11T10:30:00+08:00",
+      "access_assumptions": [
+        "offline teaching fixture"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-1",
+      "kind": "observed",
+      "statement": "The synthetic portal visibly provides a Download helper control.",
+      "source_ids": ["S-1"],
+      "asset_ids": ["A-1"],
+      "boundary": "The fixture does not authorize a real download."
+    },
+    {
+      "id": "C-2",
+      "kind": "observed",
+      "statement": "The synthetic confirmation page visibly names a Training profile.",
+      "source_ids": ["S-2"],
+      "asset_ids": ["A-2"],
+      "boundary": "The fixture is not permission to install a real profile."
+    },
+    {
+      "id": "C-3",
+      "kind": "observed",
+      "statement": "The synthetic portal visibly shows Device check complete.",
+      "source_ids": ["S-1"],
+      "asset_ids": ["A-3"],
+      "boundary": "The fixture does not prove a real device is compliant."
+    }
+  ],
+  "assets": [
+    {
+      "id": "A-1",
+      "path": "assets/01-download-helper.webp",
+      "kind": "screenshot",
+      "role": "instruction",
+      "source_ids": ["S-1"],
+      "claim_ids": ["C-1"],
+      "inspected": true,
+      "operations": ["synthetic-fixture", "crop", "highlight"]
+    },
+    {
+      "id": "A-2",
+      "path": "assets/02-install-confirmation.webp",
+      "kind": "screenshot",
+      "role": "instruction",
+      "source_ids": ["S-2"],
+      "claim_ids": ["C-2"],
+      "inspected": true,
+      "operations": ["synthetic-fixture", "crop", "highlight"]
+    },
+    {
+      "id": "A-3",
+      "path": "assets/03-complete-state.webp",
+      "kind": "screenshot",
+      "role": "instruction",
+      "source_ids": ["S-1"],
+      "claim_ids": ["C-3"],
+      "inspected": true,
+      "operations": ["synthetic-fixture", "crop", "highlight"]
+    }
+  ],
+  "outputs": {
+    "deliverable": "deliverable.md",
+    "evidence_index": "evidence-index.md",
+    "notion_import": "packages/notion-import.md"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "visual-brief",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Evidence-first visual communication skill for AI agents.",
+  "type": "module",
+  "scripts": {
+    "test": "python3 -m unittest discover -s tests -p 'test_*.py'",
+    "generate-examples": "python3 tests/generate_example_assets.py"
+  },
+  "devDependencies": {
+    "playwright": "1.61.1"
+  }
+}

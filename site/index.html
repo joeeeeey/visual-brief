@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Visual Brief is an evidence-first visual communication skill for AI agents.">
+    <title>Visual Brief - Evidence-first communication for AI agents</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Visual Brief home">VISUAL BRIEF</a>
+      <nav aria-label="Primary navigation">
+        <a href="#modes">Modes</a>
+        <a href="#contract">Contract</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/joeeeeey/visual-brief">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="assets/01-context-gap.webp" alt="A visual representation of an AI context gap becoming a reviewable brief">
+        <div class="hero-shade"></div>
+        <div class="hero-content shell">
+          <p class="eyebrow light">Evidence-first skill for AI agents</p>
+          <h1 id="hero-title">Visual Brief</h1>
+          <p class="hero-copy">Turn deep context into a brief someone can inspect.</p>
+          <p class="hero-note">A screenshot makes the important thing easy to see. A canonical link keeps it possible to verify or challenge.</p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#install">Install the skill</a>
+            <a class="text-link light" href="#modes">See the reader journeys</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="statement shell" aria-labelledby="statement-title">
+        <div class="section-label">The problem</div>
+        <div>
+          <h2 id="statement-title">Research is not useful until another person can check it without replaying your whole investigation.</h2>
+          <p>Visual Brief takes the decisive sentence, control, state, or chart value and puts it next to a concise explanation. The source stays named and linkable. The boundary stays visible.</p>
+        </div>
+      </section>
+
+      <section id="contract" class="proof-band">
+        <div class="shell proof-layout">
+          <figure class="asset-frame">
+            <img src="assets/02-claim-visual-source.webp" alt="A claim, visual evidence, and canonical source each play a distinct role">
+            <figcaption>Different artifacts, different responsibilities.</figcaption>
+          </figure>
+          <div class="proof-copy">
+            <p class="eyebrow">A reviewable chain</p>
+            <h2>A claim is not a screenshot. A screenshot is not a source.</h2>
+            <dl class="responsibilities">
+              <div><dt>Claim</dt><dd>The narrow statement the reader is being asked to accept.</dd></div>
+              <div><dt>Visual</dt><dd>The smallest readable region that makes the decisive state easy to inspect.</dd></div>
+              <div><dt>Source</dt><dd>The canonical record a reader can open, question, or use to challenge the claim.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section id="modes" class="modes shell" aria-labelledby="modes-title">
+        <div class="section-label">Three modes</div>
+        <h2 id="modes-title">Start from the reader's next action.</h2>
+        <figure class="asset-frame modes-image">
+          <img src="assets/03-three-modes.webp" alt="Three Visual Brief modes for decisions, procedures, and public explainers">
+          <figcaption>One source and claim contract, three reader experiences.</figcaption>
+        </figure>
+        <div class="mode-list">
+          <article>
+            <p class="mode-number">01</p>
+            <h3>Evidence reply</h3>
+            <p>Answer a stakeholder question with the conclusion first, then only the evidence that changes the decision.</p>
+          </article>
+          <article>
+            <p class="mode-number">02</p>
+            <h3>Visual procedure</h3>
+            <p>Put each image directly after the action it removes ambiguity from, then finish on a visible success state.</p>
+          </article>
+          <article>
+            <p class="mode-number">03</p>
+            <h3>Public explainer</h3>
+            <p>Teach an idea with source-backed screenshots and clearly labeled illustrative diagrams or generated art.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="safety-band">
+        <div class="shell safety-layout">
+          <div>
+            <p class="eyebrow">Draft first</p>
+            <h2>Preparing a brief does not authorize sending it.</h2>
+          </div>
+          <p>Visual Brief creates local deliverables, WebP assets, previews, Block Kit JSON, Notion-ready Markdown, and channel drafts. Uploading, sending, posting, form submission, or public repository creation remains an explicit approval step.</p>
+        </div>
+      </section>
+
+      <section id="install" class="install shell" aria-labelledby="install-title">
+        <div class="section-label">Install once</div>
+        <div class="install-grid">
+          <div>
+            <h2 id="install-title">A small payload. A complete workflow.</h2>
+            <p>The installable skill is separate from this showcase site, its images, synthetic examples, and public evaluation materials.</p>
+            <a class="button button-dark" href="https://github.com/joeeeeey/visual-brief">Open the repository</a>
+          </div>
+          <figure class="asset-frame install-image">
+            <img src="assets/04-lightweight-install.webp" alt="The skill payload is separate from public examples and visual showcase assets">
+            <figcaption>The agent gets the workflow, not the marketing media.</figcaption>
+          </figure>
+        </div>
+        <div class="command-panel" aria-label="Installation command">
+          <code>npx skills add joeeeeey/visual-brief --skill visual-brief --agent '*' --yes</code>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <p>Visual Brief is open source under MIT. All showcase images are synthetic.</p>
+      <a href="https://github.com/joeeeeey/visual-brief">github.com/joeeeeey/visual-brief</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Visual Brief"
+  short_description: "Turn sources and visuals into reviewable briefs"
+  default_prompt: "Use $visual-brief to create a source-backed visual brief for this audience."

@@ -1,0 +1,27 @@
+{
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "[DRAFT] Replace with the conclusion title"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Replace with a concise conclusion and named canonical links. This JSON is a local draft and does not send a Slack message."
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "Source boundaries and images remain in the local evidence package."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "title": "Replace with a reader-facing title",
+  "mode": "evidence-reply",
+  "audience": "Replace with the intended audience",
+  "status": "draft",
+  "publication": {
+    "approved": false,
+    "approved_at": null,
+    "destination": null
+  },
+  "sources": [
+    {
+      "id": "S-1",
+      "title": "Canonical source title",
+      "url": "https://example.com/canonical-source",
+      "kind": "canonical",
+      "captured_at": "2026-07-11T10:30:00+08:00",
+      "access_assumptions": [
+        "public documentation"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-1",
+      "kind": "documented",
+      "statement": "Write the narrow statement the source supports.",
+      "source_ids": [
+        "S-1"
+      ],
+      "asset_ids": [
+        "A-1"
+      ],
+      "boundary": "State what this evidence does not establish."
+    }
+  ],
+  "assets": [
+    {
+      "id": "A-1",
+      "path": "assets/01-meaningful-name.webp",
+      "kind": "screenshot",
+      "role": "evidence",
+      "source_ids": [
+        "S-1"
+      ],
+      "claim_ids": [
+        "C-1"
+      ],
+      "inspected": true,
+      "operations": [
+        "crop",
+        "highlight"
+      ]
+    }
+  ],
+  "outputs": {
+    "deliverable": "deliverable.md",
+    "evidence_index": "evidence-index.md"
+  }
+}

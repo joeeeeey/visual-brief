@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visual Brief source manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "title",
+    "mode",
+    "audience",
+    "status",
+    "publication",
+    "sources",
+    "claims",
+    "assets",
+    "outputs"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "title": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["evidence-reply", "visual-procedure", "public-explainer"]},
+    "audience": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "review", "approved", "published"]},
+    "publication": {
+      "type": "object",
+      "required": ["approved"],
+      "properties": {
+        "approved": {"type": "boolean"},
+        "approved_at": {"type": ["string", "null"]},
+        "destination": {"type": ["string", "null"]}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "url", "kind", "captured_at", "access_assumptions"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "url": {"type": "string", "format": "uri"},
+          "kind": {"enum": ["canonical", "secondary", "fixture"]},
+          "captured_at": {"type": "string", "minLength": 1},
+          "access_assumptions": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "statement", "source_ids", "asset_ids", "boundary"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["observed", "documented", "inference", "illustrative"]},
+          "statement": {"type": "string", "minLength": 1},
+          "source_ids": {"type": "array", "items": {"type": "string"}},
+          "asset_ids": {"type": "array", "items": {"type": "string"}},
+          "boundary": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "kind", "role", "source_ids", "claim_ids", "inspected"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "pattern": "^assets/.+\\.webp$"},
+          "kind": {"enum": ["screenshot", "diagram", "generated"]},
+          "role": {"enum": ["evidence", "instruction", "illustration"]},
+          "source_ids": {"type": "array", "items": {"type": "string"}},
+          "claim_ids": {"type": "array", "items": {"type": "string"}},
+          "inspected": {"const": true},
+          "operations": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "outputs": {"type": "object"}
+  }
+}

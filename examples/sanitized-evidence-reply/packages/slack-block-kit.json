@@ -1,0 +1,18 @@
+{
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "[DRAFT] Training example: sync settings evidence reply"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "The synthetic fixture shows Enabled with a 15-minute interval. This is a local training draft, not a real product assertion.\n\n*Source*\n- <https://example.invalid/visual-brief-fixtures/sync-settings|Synthetic sync settings fixture> (C-1)"
+      }
+    }
+  ]
+}
