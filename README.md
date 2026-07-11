@@ -1,159 +1,48 @@
 # Visual Brief
 
-> Let AI show the important button, sentence, or success state instead of only describing it.
+> Turn AI research and browser work into a visual explanation another person can actually follow.
 
-Visual Brief is a skill for AI agents such as Codex, Claude Code, and Cursor.
-After an agent researches a question or walks through a web flow, it can capture
-only the part another person needs to see, place each image next to the matching
-explanation, and prepare a Slack reply, operating guide, or public tutorial.
+Visual Brief is a reusable workflow package for Codex, Claude Code, Cursor, and other Skills-compatible AI agents. It helps an agent find the important sentence, button, setting, or success state; capture only that useful region; keep the original source link; and prepare a reader-ready draft.
 
-For example, imagine an employee installing a company-required helper on a Mac.
-The useful result is not a long paragraph saying "download it, enable permission,
-then wait." It is a short guide showing the exact download button, the setting to
-enable, and the green state that proves the setup is complete.
+Use it for a Slack answer, a screenshot-led operating guide, or a public technical explainer.
 
-![A synthetic employee guide generated as a Visual Brief](https://joeeeeey.github.io/visual-brief/assets/06-employee-guide-preview.webp)
-
-[Open the full synthetic case study](https://joeeeeey.github.io/visual-brief/case-study/).
-It contains no real company, account, employee, or device data.
+![A synthetic employee guide created with Visual Brief](https://joeeeeey.github.io/visual-brief/assets/06-employee-guide-preview.webp)
 
 ## Install
 
-Install the lightweight skill for every supported agent in the current project:
+Run this from the root of the project where you use your agent. Node.js and `npx` are required.
 
 ```bash
 npx skills add joeeeeey/visual-brief --skill visual-brief --agent '*' --yes
 ```
 
-Or target one agent:
+This installs only the lightweight [`skills/visual-brief`](skills/visual-brief) directory for every supported agent detected in that project. Reopen your agent session after installation.
 
-```bash
-npx skills add joeeeeey/visual-brief --skill visual-brief --agent codex --yes
-npx skills add joeeeeey/visual-brief --skill visual-brief --agent claude-code --yes
-npx skills add joeeeeey/visual-brief --skill visual-brief --agent cursor --yes
-```
+## Use It
 
-`npx skills` installs only [`skills/visual-brief`](skills/visual-brief), not the
-site, README images, examples, or evaluation workspace. Use `--global` only when
-you intentionally want a user-level installation.
+After installation, use normal language in Codex CLI, Claude Code, or your other agent. No special command syntax is required.
 
-## Why It Exists
+For example:
 
-AI often produces a correct answer that is still hard to follow. The reader has
-to open several links, find the sentence being referenced, and guess which
-button or final state matters. Visual Brief does that last mile of communication:
-it chooses the smallest useful visual, keeps the original source link nearby,
-and writes for the person seeing the workflow for the first time.
+> Using `<installation page URL or source material>`, create a visual step-by-step guide for installing the app on macOS. Walk through the web flow, screenshot only the important buttons and states, place each image directly after the step it explains, keep the original help links, and end with a visible success check. Prepare a draft only; do not publish or submit anything.
 
-Visual Brief packages the smallest useful evidence, the source behind it, and a
-narrative arranged for the next reader action.
+## Good Fits
 
-![A claim, a decisive visual, and a source have different jobs](https://joeeeeey.github.io/visual-brief/assets/02-claim-visual-source.webp)
+- “Explain in Slack why we cannot use this approach, with the decisive official text highlighted.”
+- “Turn this portal workflow into a beginner-friendly guide with one screenshot per useful step.”
+- “Create a V2EX, blog, or X draft using real evidence screenshots and clearly labeled explanatory visuals.”
 
-## Three Modes
+## Defaults
 
-| Mode | Use it for | Reader sequence |
-| --- | --- | --- |
-| `evidence-reply` | A stakeholder answer, Slack reply, or decision record | conclusion -> decisive proof -> source -> boundary |
-| `visual-procedure` | A screenshot-led operating guide | action -> adjacent image -> expected state -> success check |
-| `public-explainer` | A blog post, V2EX post, X thread, newsletter, or tutorial draft | thesis -> explanation/evidence -> sources and limits -> channel drafts |
+- Keep screenshots used as factual evidence next to the text they support.
+- Keep original source links so readers can verify the claim.
+- Treat generated images and diagrams as explanation, not evidence.
+- Create drafts and previews first. Sending, uploading, or publishing requires explicit approval.
+- Keep cookies, tokens, browser state, private URLs, and personal data out of the repository.
 
-![The three reader journeys](https://joeeeeey.github.io/visual-brief/assets/03-three-modes.webp)
+## Links
 
-## The Package Contract
-
-Every brief is a local, reviewable directory. `source-manifest.json` is the
-machine-readable anchor connecting sources, claims, assets, outputs, and the
-publication state.
-
-```text
-brief/
-  deliverable.md
-  evidence-index.md
-  source-manifest.json
-  assets/01-decisive-state.webp
-  packages/                  # optional local drafts
-  preview/index.html         # optional local preview
-```
-
-The contract keeps factual support separate from explanatory art:
-
-- `observed`, `documented`, and `inference` claims link to named sources.
-- `illustrative` claims label diagrams, generated visuals, or rendered cards.
-- A generated visual cannot be used as factual evidence.
-- Every shareable image is a real WebP and must be visually inspected.
-
-## Lightweight By Design
-
-The installable payload stays small. Visual showcase files live on GitHub Pages;
-synthetic examples and tests live at the repository root, outside the skill
-directory. Persistent browser state belongs outside both the repository and a
-brief package because it is credential material.
-
-![The installable payload and public showcase stay separate](https://joeeeeey.github.io/visual-brief/assets/04-lightweight-install.webp)
-
-## Quick Start
-
-1. Choose a mode and create a package directory in your active project.
-2. Copy [`source-manifest.json`](skills/visual-brief/templates/source-manifest.json)
-   and a mode template from [`skills/visual-brief/templates`](skills/visual-brief/templates).
-3. Capture the smallest readable visual region, then crop, redact, and annotate it.
-4. Put each image immediately after the claim or step it supports.
-5. Run the validator and inspect every WebP before sharing.
-
-```bash
-python3 -m pip install -r skills/visual-brief/requirements.txt
-
-python3 skills/visual-brief/scripts/validate_package.py --package ./my-brief
-python3 skills/visual-brief/scripts/render_preview.py --package ./my-brief
-```
-
-For reproducible browser capture, install Playwright in the project that will
-run the capture helper. It is optional and is never installed by the skill:
-
-```bash
-npm install --save-dev playwright
-npx playwright install chromium
-```
-
-Keep Playwright storage state outside the repository, for example
-`$HOME/.visual-brief/browser-state/project.json`. Never commit cookies, tokens,
-authorization headers, profiles, customer data, or user-specific installers.
-
-## Safety Model
-
-Visual Brief is draft-first. It can create local Markdown, WebP assets, HTML
-previews, Slack Block Kit JSON, Notion-ready Markdown, and social drafts. It
-does not upload, send, post, submit, or create repositories by itself.
-
-Before an external action, show the exact destination and material, validate the
-package, inspect the images, and obtain explicit approval in the current
-conversation.
-
-## Examples And Evaluation
-
-- [`examples/`](examples) contains synthetic, privacy-safe packages for all
-  three modes. They are teaching fixtures, not evidence about a real system.
-- [`evals/`](evals) contains public prompts and fixtures for focused skill
-  evaluation.
-- [`skills/visual-brief/references`](skills/visual-brief/references) contains
-  the source, claim, capture, privacy, and destination rules used by the skill.
-
-Run the deterministic checks with Python 3 and Pillow:
-
-```bash
-python3 -m pip install -r requirements-dev.txt
-python3 -m unittest discover -s tests -p 'test_*.py'
-```
-
-## Showcase
-
-Visit the public visual introduction at
-[joeeeeey.github.io/visual-brief](https://joeeeeey.github.io/visual-brief/).
-
-For a Chinese introduction, see [README.zh-CN.md](README.zh-CN.md). Draft
-sharing material for V2EX and X lives in [`docs/`](docs).
-
-## License
-
-[MIT](LICENSE)
+- [See the complete synthetic example](https://joeeeeey.github.io/visual-brief/case-study/)
+- [Read the Skill](skills/visual-brief/SKILL.md)
+- [中文说明](README.zh-CN.md)
+- [MIT License](LICENSE)
