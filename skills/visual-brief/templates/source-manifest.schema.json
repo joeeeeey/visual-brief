@@ -15,7 +15,24 @@
     "outputs"
   ],
   "properties": {
-    "schema_version": {"const": "1.0"},
+    "schema_version": {"enum": ["1.0", "1.1"]},
+    "request": {
+      "type": "object",
+      "required": ["destinations", "source_access", "capture", "browser_state", "locale", "compatibility_profile"],
+      "properties": {
+        "destinations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["local-html", "slack", "notion", "linear", "v2ex", "x", "blog", "email", "other"]}
+        },
+        "source_access": {"enum": ["public", "authenticated", "provided", "mixed"]},
+        "capture": {"enum": ["playwright", "provided-assets", "mixed", "none"]},
+        "browser_state": {"enum": ["none", "ephemeral", "existing-session", "external-persistent"]},
+        "locale": {"type": "string", "minLength": 2},
+        "compatibility_profile": {"type": ["string", "null"], "enum": [null, "web-evidence-capture-v1"]}
+      }
+    },
     "title": {"type": "string", "minLength": 1},
     "mode": {"enum": ["evidence-reply", "visual-procedure", "public-explainer"]},
     "audience": {"type": "string", "minLength": 1},
@@ -79,6 +96,80 @@
         }
       }
     },
-    "outputs": {"type": "object"}
-  }
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "deliverable": {"type": "string", "minLength": 1},
+        "evidence_index": {"type": "string", "minLength": 1},
+        "html_preview": {"type": "string", "minLength": 1},
+        "slack_block_kit": {"type": "string", "minLength": 1},
+        "notion_import": {"type": "string", "minLength": 1},
+        "social_drafts": {"type": "string", "minLength": 1},
+        "pdf_export": {"type": "string", "minLength": 1},
+        "image_export": {"type": "string", "minLength": 1},
+        "legacy_deliverable": {"type": "string", "minLength": 1},
+        "legacy_notion_import": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": {"type": "string", "minLength": 1}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"schema_version": {"const": "1.1"}}},
+      "then": {"required": ["request"]}
+    },
+    {
+      "if": {
+        "required": ["request"],
+        "properties": {
+          "request": {
+            "properties": {"destinations": {"contains": {"const": "local-html"}}}
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "outputs": {
+            "required": ["html_preview"],
+            "properties": {"html_preview": {"const": "preview/index.html"}}
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["request"],
+        "properties": {
+          "request": {
+            "properties": {"destinations": {"contains": {"const": "slack"}}}
+          }
+        }
+      },
+      "then": {"properties": {"outputs": {"required": ["slack_block_kit"]}}}
+    },
+    {
+      "if": {
+        "required": ["request"],
+        "properties": {
+          "request": {
+            "properties": {"destinations": {"contains": {"const": "notion"}}}
+          }
+        }
+      },
+      "then": {"properties": {"outputs": {"required": ["notion_import"]}}}
+    },
+    {
+      "if": {
+        "required": ["request"],
+        "properties": {
+          "request": {
+            "properties": {
+              "destinations": {"contains": {"enum": ["v2ex", "x", "blog"]}}
+            }
+          }
+        }
+      },
+      "then": {"properties": {"outputs": {"required": ["social_drafts"]}}}
+    }
+  ]
 }

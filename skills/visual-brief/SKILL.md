@@ -17,6 +17,22 @@ Create a package another person can understand quickly and verify responsibly.
 Visuals reduce the effort to inspect a claim or action. Canonical sources keep
 the result auditable. Neither replaces the other.
 
+## Resolve The Request
+
+Infer the mode, destination, audience, source access, capture method, browser
+state policy, locale, and publication state before collecting evidence. Record
+the resolved values in `source-manifest.json` using
+[request-resolution.md](references/request-resolution.md).
+
+- Honor an explicit Slack, Notion, Linear, V2EX, X, blog, email, or local
+  destination without asking again.
+- When no destination is stated, default to `local-html` and render
+  `preview/index.html` before handoff.
+- Ask only when the answer materially changes execution: an external destination
+  is intended but ambiguous, authenticated access is required, browser state
+  may be persisted, or an external action is about to occur.
+- Keep publication as a local draft until separately approved.
+
 ## Choose A Mode
 
 Infer the audience and destination when they are clear. Ask only about a real
@@ -74,15 +90,19 @@ claim boundary is not obvious.
 
 ## Capture And Annotate
 
-Use a structured API or CLI for facts when one is available; use a browser to
-capture the wording or UI state a reader needs to see. Prefer first-party
-sources and label secondary sources as such.
+Use search, fetch, a structured API, or a CLI to discover and verify facts when
+that is more reliable than browser automation. When the deliverable needs a
+rendered web source, control, or workflow state, use Playwright to capture the
+smallest decisive region. Prefer first-party sources and label secondary sources
+as such.
 
-For authenticated capture, use Playwright only with a persistent state outside
-the repository, for example `~/.visual-brief/browser-state/<project>.json`.
-Treat that state as a credential. Never copy it into the package or source
-control. Do not bypass login, MFA, paid access, warning pages, or permissions.
-See [capture-and-annotation.md](references/capture-and-annotation.md).
+Use an ephemeral Playwright context for public pages. For authenticated capture,
+prefer an existing signed-in session or user-assisted login. Persist browser
+state only when reuse is needed and approved; keep it outside the repository,
+for example `~/.visual-brief/browser-state/<project>.json`. Treat that state as
+a credential. Never copy it into the package or source control. Do not bypass
+login, MFA, paid access, warning pages, or permissions. See
+[capture-and-annotation.md](references/capture-and-annotation.md).
 
 Install the image-processing dependency with `python3 -m pip install -r
 requirements.txt` from this skill directory. The optional Playwright capture
@@ -140,14 +160,35 @@ copy in `packages/social-drafts.md`; do not post it. Keep source links and
 claim boundaries in the long-form artifact even when a short channel cannot
 carry all of them.
 
+## Legacy Compatibility
+
+When invoked through the deprecated `web-evidence-capture` shim, set
+`request.compatibility_profile` to `web-evidence-capture-v1`, use
+`artifacts/web-evidence/<topic-slug>/`, map Evidence pack to `evidence-reply`
+and Visual web guide to `visual-procedure`, then run
+`scripts/export_legacy_web_evidence.py`. Read
+[legacy-web-evidence-capture.md](references/legacy-web-evidence-capture.md).
+Do not maintain a second capture implementation in the shim.
+
 ## Package And Check
 
 Use the destination rules in
-[destination-packaging.md](references/destination-packaging.md). Optionally
-render a local HTML preview:
+[destination-packaging.md](references/destination-packaging.md). When
+`local-html` is selected or inferred, render the local HTML preview before
+validation and handoff:
 
 ```bash
 python3 scripts/render_preview.py --package <package>
+```
+
+When the user requests a portable local export, convert that preview without
+publishing it. The exporter accepts only the renderer-marked local preview,
+disables JavaScript, blocks network requests, and rejects symlink or package-
+external resources. It writes only under `exports/` and preserves existing
+exports unless `--force` is explicitly supplied:
+
+```bash
+node scripts/export_preview.mjs --package <package>
 ```
 
 Run the structural and safety preflight before handing the package over:

@@ -1,9 +1,19 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "title": "Replace with a reader-facing title",
   "mode": "evidence-reply",
   "audience": "Replace with the intended audience",
   "status": "draft",
+  "request": {
+    "destinations": [
+      "local-html"
+    ],
+    "source_access": "public",
+    "capture": "playwright",
+    "browser_state": "ephemeral",
+    "locale": "en",
+    "compatibility_profile": null
+  },
   "publication": {
     "approved": false,
     "approved_at": null,
@@ -56,6 +66,7 @@
   ],
   "outputs": {
     "deliverable": "deliverable.md",
-    "evidence_index": "evidence-index.md"
+    "evidence_index": "evidence-index.md",
+    "html_preview": "preview/index.html"
   }
 }

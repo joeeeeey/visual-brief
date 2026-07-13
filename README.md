@@ -26,6 +26,6 @@ Paste a normal-language request like this:
 - “Turn this portal workflow into a beginner-friendly guide with one screenshot per useful step.”
 - “Create a V2EX, blog, or X draft using real evidence screenshots and clearly labeled explanatory visuals.”
 
-Draft-first by default: do not send, upload, or publish without approval, and keep browser state and private data out of the repository.
+No destination named? The default result is a local HTML preview. Do not send, upload, or publish without approval, and keep browser state and private data out of the repository.
 
 [English example](https://joeeeeey.github.io/visual-brief/case-study/en.html) · [Read the Skill](skills/visual-brief/SKILL.md) · [中文说明](README.zh-CN.md) · [MIT](LICENSE)

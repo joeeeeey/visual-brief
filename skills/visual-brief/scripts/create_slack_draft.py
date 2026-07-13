@@ -8,6 +8,23 @@ import json
 import sys
 from pathlib import Path
 
+from path_safety import atomic_write_text, resolve_package, safe_package_path
+from url_safety import http_url_issues
+
+
+def slack_label(value: object) -> str:
+    text = " ".join(str(value or "").split()).replace("|", "/")
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def slack_link_url(value: object) -> str:
+    if not isinstance(value, str) or any(character in value for character in "<>|\r\n"):
+        raise ValueError("Slack source URL contains unsafe link syntax")
+    issues = http_url_issues(value)
+    if issues:
+        raise ValueError(f"Slack source URL {issues[0]}")
+    return value
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Create a local-only Slack Block Kit draft.")
@@ -20,16 +37,26 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    package = args.package.resolve()
-    manifest_path = package / "source-manifest.json"
-    if not manifest_path.is_file():
-        raise FileNotFoundError("package is missing source-manifest.json")
+    package = resolve_package(args.package)
+    manifest_path = safe_package_path(
+        package,
+        package / "source-manifest.json",
+        "source manifest",
+        must_exist=True,
+        require_file=True,
+    )
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    output = (args.output or package / "packages" / "slack-block-kit.json").resolve()
-    try:
-        output.relative_to(package)
-    except ValueError as exc:
-        raise ValueError("--output must stay inside the package") from exc
+    outputs = manifest.setdefault("outputs", {})
+    if not isinstance(outputs, dict):
+        raise ValueError("manifest outputs must be an object")
+    output = safe_package_path(
+        package,
+        args.output or package / "packages" / "slack-block-kit.json",
+        "Slack draft output",
+    )
+    relative_output = output.relative_to(package).as_posix()
+    if not relative_output.startswith("packages/") or output.suffix.lower() != ".json":
+        raise ValueError("Slack draft output must be a .json file under packages/")
     if output.exists() and not args.force:
         raise FileExistsError(f"draft already exists: {output}; use --force to replace it")
 
@@ -41,7 +68,10 @@ def main() -> int:
         for source_id in claim.get("source_ids", []):
             source = source_by_id.get(source_id)
             if source:
-                lines.append(f"- <{source.get('url')}|{source.get('title')}> ({claim.get('id')})")
+                source_url = slack_link_url(source.get("url"))
+                source_title = slack_label(source.get("title"))
+                claim_id = slack_label(claim.get("id"))
+                lines.append(f"- <{source_url}|{source_title}> ({claim_id})")
     payload = {
         "blocks": [
             {
@@ -60,8 +90,19 @@ def main() -> int:
             },
         ]
     }
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    atomic_write_text(
+        package,
+        output,
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        "Slack draft output",
+    )
+    outputs["slack_block_kit"] = relative_output
+    atomic_write_text(
+        package,
+        manifest_path,
+        json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        "source manifest",
+    )
     print(json.dumps({"draft": str(output), "sent": False}, ensure_ascii=False))
     return 0
 
@@ -69,6 +110,6 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (FileNotFoundError, FileExistsError, ValueError, json.JSONDecodeError) as exc:
+    except (FileNotFoundError, FileExistsError, OSError, ValueError, json.JSONDecodeError) as exc:
         print(f"create_slack_draft: {exc}", file=sys.stderr)
         raise SystemExit(2)

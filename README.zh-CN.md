@@ -26,6 +26,6 @@ npx skills add joeeeeey/visual-brief --skill visual-brief --agent '*' --yes
 - “把这个后台操作流程整理成新手也能照着完成的图文指南。”
 - “把这次研究整理成 V2EX、博客或 X 的图文草稿，事实截图和解释图要明确区分。”
 
-默认只做草稿：未经确认不发送、上传或发布，浏览器登录状态和私有数据不进入仓库。
+没有指定渠道时，默认生成本地 HTML 预览。未经确认不发送、上传或发布，浏览器登录状态和私有数据不进入仓库。
 
 [英文案例](https://joeeeeey.github.io/visual-brief/case-study/en.html) · [阅读 Skill](skills/visual-brief/SKILL.md) · [English README](README.md) · [MIT](LICENSE)

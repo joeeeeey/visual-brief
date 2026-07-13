@@ -2,6 +2,10 @@
 
 ## Playwright Capture
 
+Use Playwright for rendered web evidence and workflow states, not as a mandatory
+replacement for search, fetch, APIs, CLIs, or provided files during research.
+Use an ephemeral context for public pages.
+
 Prefer a stable selector for one useful content region over a full-page
 screenshot. The bundled helper accepts only element screenshots so browser
 chrome, other tabs, and unrelated page areas are less likely to enter the
@@ -15,10 +19,22 @@ node scripts/capture_playwright.mjs \
   --storage-state "$HOME/.visual-brief/browser-state/example.json"
 ```
 
-The helper only reads `--storage-state`; it will reject state stored inside the
-repository. Install Playwright and its browser in the project that runs this
-command. Do not commit `node_modules`, browser profiles, or downloaded
-authentication files.
+The helper reads and parses `--storage-state` into memory before Playwright is
+started. It rejects state in any Git worktree, state outside
+`$HOME/.visual-brief/browser-state/`, symlinked state or credential roots, and a
+credential root that overlaps the active project. Set
+`VISUAL_BRIEF_BROWSER_STATE_ROOT` only to an absolute, intentionally managed
+external credential directory. The current working directory is the project
+boundary when it is not inside a Git worktree. Capture output is created once
+and never follows or overwrites an existing file or symlink. Install Playwright
+and its browser in the project that runs this command. Do not commit
+`node_modules`, browser profiles, or downloaded authentication files.
+
+For authenticated pages, prefer an existing signed-in session or user-assisted
+login. Ask before persisting reusable state, never ask the user to paste cookies
+or tokens, and keep any saved state outside the repository with credential-level
+permissions. MFA, consent, warning, payment, and permission prompts remain user
+or approval boundaries.
 
 ## Crop, Highlight, And Redact
 

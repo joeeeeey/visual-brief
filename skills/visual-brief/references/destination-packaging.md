@@ -1,5 +1,22 @@
 # Destination Packaging
 
+## Local HTML Preview
+
+- Use `local-html` when no destination is stated and no external handoff is
+  clearly intended.
+- Render `preview/index.html` from `deliverable.md` and the manifest before
+  handoff. Keep Markdown and the manifest as the editable and auditable sources.
+- A local HTML preview may later be exported to PDF or an image. Exporting a
+  local file with `scripts/export_preview.mjs` does not authorize
+  upload or publication.
+- Preview images must be local package files. Export disables JavaScript, blocks
+  every non-`file:` request, allows only package-contained files, and fails if a
+  remote or unsafe resource is requested.
+- The renderer writes only `preview/index.html`. PDF and PNG export paths must
+  remain under `exports/`; existing exports are preserved unless the caller uses
+  the explicit `--force` option. Slack JSON stays under `packages/`.
+- Give the user the local preview path and state that it is a draft.
+
 ## Slack Or Email Reply
 
 - Start with one or two sentences that answer the reader's question.
