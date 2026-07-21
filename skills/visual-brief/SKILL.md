@@ -1,14 +1,6 @@
 ---
 name: visual-brief
-description: >-
-  Turn source-backed research, screenshots, annotated UI states, diagrams, or
-  generated explanatory visuals into a local, reviewable visual brief for a
-  stakeholder reply, screenshot-led procedure, or public technical explainer.
-  Use this whenever a user needs an audience-ready package with images next to
-  the claims or steps they support, a concise Slack/Notion/Linear/blog/social
-  draft, visual proof, an annotated screenshot, or a publishable explainer.
-  Do not use it for ordinary text-only research, a routine browser lookup, or
-  a normal explanation with no requested visual deliverable.
+description: Create source-backed visual briefs from screenshots, annotations, diagrams, or generated images. Use for evidence replies, procedures, and public explainers; skip text-only work.
 ---
 
 # Visual Brief
